@@ -1,3 +1,5 @@
+package introduction
+
 class JavaCode {
 
     fun toJSON(collection: Collection<Int>): String {
