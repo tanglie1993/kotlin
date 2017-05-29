@@ -2,8 +2,6 @@ import collections.City
 import collections.Customer
 import collections.Shop
 
-]package collections
-
 /**
  * Created by Administrator on 2017/5/29 0029.
  */
