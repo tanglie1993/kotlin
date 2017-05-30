@@ -2,44 +2,44 @@ package com.example.administrator.myapplication
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.Adapter
-import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 /**
  * Created by Administrator on 2017/5/30 0030.
  */
-public class RecyclerAdapter<T>(val data: List<T>?, val context: Context?) : RecyclerView.Adapter<BaseViewHolder>() {
+public class RecyclerAdapter(val data: List<NewsResponse.ResultEntity.DataEntity>?, val context: Context?) : RecyclerView.Adapter<ViewHolder>() {
     override fun getItemCount(): Int {
         return data?.size ?: 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
-        var view = getViewResource(viewType)
-        var holder = BaseViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
+        var view = LayoutInflater.from(context).inflate(R.layout.list_item_layout, null);
+        var holder = ViewHolder(view)
         return holder
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
-
-    }
-
-    /**
-     * 添加item布局
-     */
-    fun getViewResource(viewType: Int): View{
-        return LayoutInflater.from(context).inflate(R.layout.list_item_layout, null);
+    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+        var data : NewsResponse.ResultEntity.DataEntity = data?.get(position) ?: NewsResponse.ResultEntity.DataEntity()
+        holder!!.titleTextView.text = data.title
+        Glide.with(context)
+                .load(data.thumbnail_pic_s)
+                .into(holder.imageView);
     }
 
 }
 
-public class BaseViewHolder : RecyclerView.ViewHolder {
+public class ViewHolder : RecyclerView.ViewHolder {
+
+    var titleTextView: TextView
+    var imageView: ImageView
 
     constructor(itemView: View?) : super(itemView){
-        var textView = itemView!!.findViewById(R.id.textView) as TextView
-        textView.text = "sssss"
+        titleTextView = itemView!!.findViewById(R.id.title) as TextView
+        imageView = itemView.findViewById(R.id.imageView) as ImageView
     }
 }
