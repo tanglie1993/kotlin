@@ -31,7 +31,9 @@ public class RecyclerAdapter(val data: List<NewsResponse.ResultEntity.DataEntity
                 .load(data.thumbnail_pic_s)
                 .into(holder.imageView);
         holder.imageView.setOnClickListener {
-            context?.startActivity(Intent(context, WebViewActivity::class.java))
+            val intent = Intent(context, WebViewActivity::class.java)
+            intent.putExtra("url", data.url)
+            context?.startActivity(intent)
         }
     }
 

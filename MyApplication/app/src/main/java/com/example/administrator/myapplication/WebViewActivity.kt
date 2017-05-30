@@ -11,7 +11,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         var webView = findViewById(R.id.webView) as WebView
-        webView.loadUrl("http://www.baidu.com")
+        webView.loadUrl(intent.getStringExtra("url"))
         webView.setWebViewClient(object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)
