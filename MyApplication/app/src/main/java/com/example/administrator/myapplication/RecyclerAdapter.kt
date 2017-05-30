@@ -1,6 +1,7 @@
 package com.example.administrator.myapplication
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,9 @@ public class RecyclerAdapter(val data: List<NewsResponse.ResultEntity.DataEntity
         Glide.with(context)
                 .load(data.thumbnail_pic_s)
                 .into(holder.imageView);
+        holder.imageView.setOnClickListener {
+            context?.startActivity(Intent(context, WebViewActivity::class.java))
+        }
     }
 
 }
